@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" onsubmit="return validateForm()">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required minlength="3" maxlength="50"
+                   pattern="^[a-zA-Z0-9._-]+$"
+                   title="Username must be 3-50 characters and can include letters, numbers, periods, underscores, and hyphens.">
+            <div id="usernameError" style="color: orange; font-size: small;"></div>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="6" maxlength="100"
+                   title="Password must be at least 6 characters long.">
+            <div id="passwordError" style="color: orange; font-size: small;"></div>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="#">Sign up</a> (Not implemented)</p>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const usernameError = document.getElementById('usernameError');
+            const passwordError = document.getElementById('passwordError');
+
+            // Username Validation
+            if (!usernameInput.checkValidity()) {
+                usernameError.textContent = usernameInput.title;
+                isValid = false;
+            } else {
+                usernameError.textContent = "";
+            }
+
+            // Password Validation
+            if (!passwordInput.checkValidity()) {
+                passwordError.textContent = passwordInput.title;
+                isValid = false;
+            } else {
+                passwordError.textContent = "";
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
