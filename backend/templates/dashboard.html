@@ -40,7 +40,8 @@
             margin-bottom: 1rem;
             line-height: 1.5rem;
         }
-       .logout-button {
+
+        .logout-button {
             display: inline-block;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
@@ -82,5 +83,12 @@
         {% endif %}
         <a href="/logout" class="logout-button">Logout</a>
     </div>
+    <script>
+        // Check if running in a Docker container (very basic check)
+        if (window.location.hostname === 'localhost' || window.location.hostname.includes('192.168.')) {
+            // Redirect to /login
+            window.location.href = "/login";
+        }
+    </script>
 </body>
 </html>
