@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+        }
+
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 1.5rem;
+        }
+
+        .greeting {
+            font-size: 1.25rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .server-info {
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+            line-height: 1.5rem;
+        }
+       .logout-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            background-color: #e53e3e;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out;
+            border: none;
+            margin-top: 1rem;
+        }
+
+        .logout-button:hover {
+            background-color: #c53030;
+            transform: translateY(-1px);
+        }
+
+        .logout-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">Dashboard</h1>
+        <p class="greeting">Welcome, {{ username }}!</p>
+        {% if db_time %}
+            <p class="server-info">
+                Server time from the database: <strong>{{ db_time }}</strong>
+            </p>
+            <p class="server-info">
+                Current time: <strong>{{ now }}</strong>
+            </p>
+        {% endif %}
+        {% if db_error %}
+            <p class="error-message">{{ db_error }}</p>
+        {% endif %}
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
+</body>
+</html>
